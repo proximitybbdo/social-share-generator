@@ -1,4 +1,4 @@
 Social URL Creator
 ==================
 
-Base around `encodeURIComponent`.
+Based around `encodeURIComponent`.
