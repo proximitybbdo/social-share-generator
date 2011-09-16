@@ -1,0 +1,159 @@
+<!doctype html>  
+<!--[if IE 7 ]>    <html class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+	<title>Social URL Creator</title>
+	<meta name="description" content="ProximityBBDO">
+	<meta name="author" content="ProximityBBDO">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" href="assets/img/favicon.png">
+	<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+	
+  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-1.2.0.min.css">
+	<link rel="stylesheet" href="assets/css/style.css"> 	
+	
+	<script src="assets/js/libs/modernizr-1.7.min.js"></script>
+</head>
+<body>
+
+  <div class="container">
+    <div class="page-header">
+      <h1>Social Share URL Generator <small>by Proximity BBDO</small></h1>
+    </div>
+
+    <div class="row">
+      <div class="span8">
+        <h2>Generator form</h2>
+        
+        <br><br>
+
+        <form id="generator">
+          <fieldset>
+            <legend>Please provide the following</legend>
+            
+            <div class="clearfix"> 
+              <label for="share-link">Link you're sharing:</label>
+              <div class="input"> 
+                <input id="share-link" name="share-link" class="xlarge" value="">
+              </div>
+            </div>
+
+            <div class="clearfix"> 
+              <label for="copy-twitter">Copy for <strong>Twitter</strong>:</label>
+              <div class="input"> 
+                <textarea id="copy-twitter" name="copy-twitter" class="xlarge" rows="6"></textarea>
+                <span class="help-block"> 
+                  <strong>Note:</strong> Max 140 characters!
+                </span>
+              </div>
+            </div>
+            
+            <div class="clearfix"> 
+              <label for="subject-mail">Subject for <strong>GMail</strong> and <strong>Hotmail</strong>:</label>
+              <div class="input"> 
+                <input id="subject-mail" name="subject-mail" class="xlarge" value="">
+              </div>
+            </div>
+
+            <div class="clearfix"> 
+              <label for="copy-mail">Copy for <strong>GMail</strong> and <strong>Hotmail</strong>:</label>
+              <div class="input"> 
+                <textarea id="copy-mail" name="copy-mail" class="xlarge" rows="8"></textarea>
+              </div>
+            </div>
+
+            <div class="actions">
+              <input type="submit" class="btn primary" value="Generate"> &nbsp;
+              <input type="submit" class="btn" value="Clear fields"> 
+            </div>
+          </fieldset>
+
+          <fieldset class="spec-data">
+            <legend>Base information</legend>
+            <div class="clearfix"> 
+              <label for="url-twitter">URL for <strong>Twitter</strong>:</label>
+              <div class="input"> 
+                <input id="url-twitter" class="xlarge" value="http://twitter.com/home?status={text}">
+              </div>
+            </div>
+            
+            <div class="clearfix"> 
+              <label for="url-fb">URL for <strong>Facebook</strong>:</label>
+              <div class="input"> 
+                <input id="url-fb" class="xlarge" value="http://www.facebook.com/share.php?u={link}&t={title}&v=3">
+              </div>
+            </div>
+            
+            <div class="clearfix"> 
+              <label for="url-gmail">URL for <strong>GMail</strong>:</label>
+              <div class="input"> 
+                <input id="url-gmail" class="xlarge" value="https://mail.google.com/mail/?view=cm&fs=1&to&su={subject}&body={text} {link}+&ui=2&tf=1&shva=1">
+              </div>
+            </div>
+            
+            <div class="clearfix"> 
+              <label for="url-hotmail">URL for <strong>Hotmail</strong>:</label>
+              <div class="input"> 
+                <input id="url-hotmail" class="xlarge" value="http://sn106w.snt106.mail.live.com/default.aspx?rru=compose&subject={subject}&body={text} {link}&wa=wsignin1.0">
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+
+      <div class="span8">
+        <h2>Results</h2> 
+
+        <br><br>
+
+        <form>
+          <fieldset>
+            <legend>Generated links</legend>
+
+            <div class="clearfix"> 
+              <label for="link-mail">Link for <strong>GMail</strong>:</label>
+              <div class="input"> 
+                <textarea id="link-gmail" name="link-gmail" class="xlarge" rows="6"></textarea>
+              </div>
+            </div>
+
+            <div class="clearfix"> 
+              <label for="link-hotmail">Link for <strong>Hotmail</strong>:</label>
+              <div class="input"> 
+                <textarea id="link-hotmail" name="link-hotmail" class="xlarge" rows="6"></textarea>
+              </div>
+            </div>
+
+            <div class="clearfix"> 
+              <label for="link-twitter">Link for <strong>Twitter</strong>:</label>
+              <div class="input"> 
+                <textarea id="link-twitter" name="link-twitter" class="xlarge" rows="6"></textarea>
+              </div>
+            </div>
+
+            <div class="clearfix"> 
+              <label for="link-fb">Link for <strong>Facebook</strong>:</label>
+              <div class="input"> 
+                <textarea id="link-fb" name="link-fb" class="xlarge" rows="6"></textarea>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+		
+	</div>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+	<script>!window.jQuery && document.write(unescape('%3Cscript src="assets/js/libs/jquery-1.6.4.min.js"%3E%3C/script%3E'))</script>
+  <!--[if (gte IE 6)&(lte IE 8)]><script src="assets/js/libs/selectivizr.js"></script><![endif]-->	
+	<script src="assets/js/plugins.js"></script>
+	<script src="assets/js/base.js"></script>
+</body>
+</html>
