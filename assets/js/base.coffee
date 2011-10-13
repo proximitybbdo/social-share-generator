@@ -1,12 +1,25 @@
 $ ->
   window.soc_gen = new SocialGenerator()
 
+  more_links()
+
+more_links = ->
+  $('span.extra-fields').css "cursor", "pointer"
+
+  $('span.extra-fields').click (e) ->
+    $('#share-link, span.extra-fields').css 'display', 'none'
+    $('#share-link').val ''
+
+    $('div.extra-fields').show()
+
 class SocialGenerator
   constructor: ->
     this.init()
 
   init: ->
     this.listen_for_max_chars "#copy-twitter", 140
+
+    @multi_share = false
 
     ref = this
 
@@ -25,15 +38,21 @@ class SocialGenerator
         .val this.replace_arr(this.twitter_link, [{key: "text", val: this.copy_twitter}])
 
       $("#link-fb")
-        .val this.replace_arr(this.fb_link, [ {key: "link", val: this.share_link}, 
+        .val this.replace_arr(this.fb_link, [ {key: "link", val: if this.share_link.length == 0 then this.share_link_fb else this.share_link}, 
                                                           {key: "title", val: ""}])
 
       mail_arr = [  {key: "text", val: this.copy_mail}, 
                     {key: "subject", val: this.subject_mail}, 
                     {key: "link", val: this.share_link}]
 
+      if this.multi_share
+        mail_arr[2].val = this.share_link_hotmail
+
       $("#link-hotmail")
         .val this.replace_arr(this.hotmail_link, mail_arr)
+
+      if this.multi_share
+        mail_arr[2].val = this.share_link_gmail
 
       $("#link-gmail")
         .val this.replace_arr(this.gmail_link, mail_arr)
@@ -50,6 +69,15 @@ class SocialGenerator
       @copy_mail = $("#copy-mail").val()
       @subject_mail = $("#subject-mail").val()
       @share_link = $("#share-link").val()
+      
+      this.multi_share = false
+  
+      if @share_link.length == 0
+        this.multi_share = true
+
+        @share_link_fb = $("#share-link-fb").val()
+        @share_link_gmail = $("#share-link-gmail").val()
+        @share_link_hotmail = $("#share-link-hotmail").val()
 
   validate_form: ->
     valid = true
@@ -61,7 +89,7 @@ class SocialGenerator
 
     	valid = false
 
-    if !///(http|https)://([a-zA-Z0-9.]|%[0-9A-Za-z]|/|:[0-9]?)*///.test @share_link)
+    if !this.multi_share && !///(http|https)://([a-zA-Z0-9.]|%[0-9A-Za-z]|/|:[0-9]?)*///.test @share_link
     	$("#share-link").parent().addClass "error"
 
     	valid = false
