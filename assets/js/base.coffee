@@ -14,66 +14,70 @@ more_links = ->
 
 class SocialGenerator
   constructor: ->
-    this.init()
+    @init()
 
   init: ->
-    this.listen_for_max_chars "#copy-twitter", 140
+    @listen_for_max_chars "#copy-twitter", 140
 
     @multi_share = false
 
-    ref = this
-
-    $("#generator").submit (e) ->
+    $("#generator").submit (e) =>
       e.preventDefault()
 
-      ref.generate()
+      @generate()
 
       return false
 
   generate: ->
-    this.store_vars()
+    @store_vars()
 
-    if this.validate_form()
+    if @validate_form()
       $("#link-twitter")
-        .val this.replace_arr(this.twitter_link, [{key: "text", val: this.copy_twitter}])
+        .val @replace_arr(@twitter_link, [{key: "text", val: @copy_twitter}])
 
       $("#link-fb")
-        .val this.replace_arr(this.fb_link, [ {key: "link", val: if this.share_link.length == 0 then this.share_link_fb else this.share_link}, 
-                                                          {key: "title", val: ""}])
+        .val @replace_arr(@fb_link, [ {key: "link", val: if @share_link.length == 0 then @share_link_fb else @share_link},
+                                      {key: "title", val: @share_title}])
 
-      mail_arr = [  {key: "text", val: this.copy_mail}, 
-                    {key: "subject", val: this.subject_mail}, 
-                    {key: "link", val: this.share_link}]
+      $("#link-linkedin")
+        .val @replace_arr(@linkedin_link, [ {key: "link", val: if @share_link.length == 0 then @share_link_fb else @share_link},
+                                            {key: "title", val: @share_title}])
 
-      if this.multi_share
-        mail_arr[2].val = this.share_link_hotmail
+      mail_arr = [  {key: "text", val: @copy_mail},
+                    {key: "subject", val: @subject_mail},
+                    {key: "link", val: @share_link}]
+
+      if @multi_share
+        mail_arr[2].val = @share_link_hotmail
 
       $("#link-hotmail")
-        .val this.replace_arr(this.hotmail_link, mail_arr)
+        .val @replace_arr(@hotmail_link, mail_arr)
 
-      if this.multi_share
-        mail_arr[2].val = this.share_link_gmail
+      if @multi_share
+        mail_arr[2].val = @share_link_gmail
 
       $("#link-gmail")
-        .val this.replace_arr(this.gmail_link, mail_arr)
+        .val @replace_arr(@gmail_link, mail_arr)
     else
-      @validation_timeout = setTimeout this.reset_validation, 5000
+      @validation_timeout = setTimeout @reset_validation, 5000
 
   store_vars: ->
       @twitter_link = $("#url-twitter").val()
       @fb_link = $("#url-fb").val()
       @hotmail_link = $("#url-hotmail").val()
       @gmail_link = $("#url-gmail").val()
+      @linkedin_link = $("#url-linkedin").val()
 
       @copy_twitter = $("#copy-twitter").val()
       @copy_mail = $("#copy-mail").val()
       @subject_mail = $("#subject-mail").val()
       @share_link = $("#share-link").val()
+      @share_title = $("#share-title").val()
       
-      this.multi_share = false
+      @multi_share = false
   
       if @share_link.length == 0
-        this.multi_share = true
+        @multi_share = true
 
         @share_link_fb = $("#share-link-fb").val()
         @share_link_gmail = $("#share-link-gmail").val()
@@ -82,14 +86,14 @@ class SocialGenerator
   validate_form: ->
     valid = true
 
-    this.reset_validation()
+    @reset_validation()
 
     if @copy_twitter.length > 140
     	$("#copy-twitter").parent().parent().addClass "error"
 
     	valid = false
 
-    if !this.multi_share && !///(http|https)://([a-zA-Z0-9.]|%[0-9A-Za-z]|/|:[0-9]?)*///.test @share_link
+    if !@multi_share && !///(http|https)://([a-zA-Z0-9.]|%[0-9A-Za-z]|/|:[0-9]?)*///.test @share_link
     	$("#share-link").parent().addClass "error"
 
     	valid = false
