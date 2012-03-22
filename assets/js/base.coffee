@@ -37,7 +37,9 @@ class SocialGenerator
 
       $("#link-fb")
         .val @replace_arr(@fb_link, [ {key: "link", val: if @share_link.length == 0 then @share_link_fb else @share_link},
-                                      {key: "title", val: @share_title}])
+                                      {key: "title", val: @share_title},
+                                      {key: "text", val: @copy_fb},
+                                      {key: "image", val: @fb_image}])
 
       $("#link-linkedin")
         .val @replace_arr(@linkedin_link, [ {key: "link", val: if @share_link.length == 0 then @share_link_fb else @share_link},
@@ -69,7 +71,9 @@ class SocialGenerator
       @linkedin_link = $("#url-linkedin").val()
 
       @copy_twitter = $("#copy-twitter").val()
+      @copy_fb = $("#copy-fb").val()
       @copy_mail = $("#copy-mail").val()
+      @fb_image = $("#image-fb").val()
       @subject_mail = $("#subject-mail").val()
       @share_link = $("#share-link").val()
       @share_title = $("#share-title").val()

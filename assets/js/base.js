@@ -49,6 +49,12 @@
           }, {
             key: "title",
             val: this.share_title
+          }, {
+            key: "text",
+            val: this.copy_fb
+          }, {
+            key: "image",
+            val: this.fb_image
           }
         ]));
         $("#link-linkedin").val(this.replace_arr(this.linkedin_link, [
@@ -88,7 +94,9 @@
       this.gmail_link = $("#url-gmail").val();
       this.linkedin_link = $("#url-linkedin").val();
       this.copy_twitter = $("#copy-twitter").val();
+      this.copy_fb = $("#copy-fb").val();
       this.copy_mail = $("#copy-mail").val();
+      this.fb_image = $("#image-fb").val();
       this.subject_mail = $("#subject-mail").val();
       this.share_link = $("#share-link").val();
       this.share_title = $("#share-title").val();
