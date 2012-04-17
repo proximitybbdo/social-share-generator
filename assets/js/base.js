@@ -57,6 +57,15 @@
             val: this.fb_image
           }
         ]));
+        $("#link-fb-mobile").val(this.replace_arr(this.fb_link_mobile, [
+          {
+            key: "link",
+            val: this.share_link.length === 0 ? this.share_link_fb : this.share_link
+          }, {
+            key: "title",
+            val: this.share_title
+          }
+        ]));
         $("#link-linkedin").val(this.replace_arr(this.linkedin_link, [
           {
             key: "link",
@@ -93,6 +102,7 @@
     SocialGenerator.prototype.store_vars = function() {
       this.twitter_link = $("#url-twitter").val();
       this.fb_link = $("#url-fb").val();
+      this.fb_link_mobile = $("#url-fb-mobile").val();
       this.hotmail_link = $("#url-hotmail").val();
       this.gmail_link = $("#url-gmail").val();
       this.linkedin_link = $("#url-linkedin").val();
