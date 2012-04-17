@@ -43,6 +43,7 @@ class SocialGenerator
 
       $("#link-linkedin")
         .val @replace_arr(@linkedin_link, [ {key: "link", val: if @share_link.length == 0 then @share_link_fb else @share_link},
+                                            {key: "text", val: @copy_fb},
                                             {key: "title", val: @share_title}])
 
       mail_arr = [  {key: "text", val: @copy_mail},

@@ -62,6 +62,9 @@
             key: "link",
             val: this.share_link.length === 0 ? this.share_link_fb : this.share_link
           }, {
+            key: "text",
+            val: this.copy_fb
+          }, {
             key: "title",
             val: this.share_title
           }
